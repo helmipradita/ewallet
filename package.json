@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --runInBand --forceExit",
     "build": "tsc",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "dev": "ts-node src/main.ts"
   },
   "jest": {
     "transform": {
@@ -36,6 +37,7 @@
     "jest": "^29.7.0",
     "prisma": "^5.22.0",
     "supertest": "^6.3.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
