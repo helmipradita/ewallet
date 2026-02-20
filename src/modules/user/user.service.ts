@@ -1,4 +1,3 @@
-import { z } from 'zod';
 import { RegisterUserRequest, LoginUserRequest, UpdateUserRequest } from './user.dto';
 import { UserRepository } from './user.repository';
 import { UserEntity } from './user.entity';
@@ -42,7 +41,7 @@ export class UserService {
   }
 
   static async get(user: UserEntity): Promise<UserEntity> {
-    return UserEntity.fromPrisma(user);
+    return user;
   }
 
   static async update(user: UserEntity, request: UpdateUserRequest): Promise<UserEntity> {
@@ -56,7 +55,7 @@ export class UserService {
       user.password = await bcrypt.hash(updateRequest.password, 10);
     }
 
-    const result = await UserRepository.update(user.username, user);
+    const result = await UserRepository.update(user.username, { name: user.name, password: user.password });
     return UserEntity.fromPrisma(result);
   }
 
